@@ -11,7 +11,7 @@ ENV ROOT_PASSWORD password
 RUN adduser $ONDEMAND_USER
 
 # Setup all SSH stuff
-RUN apt-get install -y openssh-server
+RUN yum install -y openssh-server
 RUN mkdir /var/run/sshd
 RUN echo "root:$ROOT_PASSWORD" | chpasswd
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
@@ -25,13 +25,13 @@ COPY ./sshd_config /etc/ssh/sshd_config
 RUN /usr/bin/ssh-keygen -A
 
 # Install OnDemand
-RUN apt-get update -y \
-    && apt-get install -y centos-release-scl \
-    && apt-get install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-4.noarch.rpm \
-    && apt-get install -y ondemand-selinux
+RUN yum update -y \
+    && yum install -y centos-release-scl \
+    && yum install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-4.noarch.rpm \
+    && yum install -y ondemand-selinux
 
 # Systemd
-RUN apt-get -y install systemd; apt-get clean all; \
+RUN yum -y install systemd; yum clean all; \
     (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
     rm -f /lib/systemd/system/multi-user.target.wants/*; \
     rm -f /etc/systemd/system/*.wants/*;\

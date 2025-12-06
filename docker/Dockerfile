@@ -1,4 +1,5 @@
-FROM centos/systemd
+FROM rockylinux:8
+ENV container docker
 
 ### MODIFY ONDEMAND USERNAME AND PASSWORD HERE
 ENV ONDEMAND_USER ondemand

@@ -40,7 +40,8 @@ RUN apt install ondemand -y
 #ENTRYPOINT ["/usr/sbin/apachectl", "start"]
 RUN rm /etc/apache2/sites-enabled/000-default.conf
 COPY entrypoint.sh /
-#COPY ood_portal.yml /etc/ood/config/
+COPY ood_portal.yml /etc/ood/config/
+COPY kubes.yml /etc/ood/config/clusters.d/
 #RUN rm /etc/ood/config/ood_portal.sha256sum
 
 # propagate the changes in ood_portal.yml to apache

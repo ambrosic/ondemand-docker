@@ -1,0 +1,27 @@
+---
+v2:
+  metadata:
+    title: "Kubes"
+  # you may not want a login section. There may not be a login node
+  # for your Kubernetes cluster
+  #login:
+  #  host: "my_k8s_cluster.my_center.edu"
+  job:
+    adapter: "kubernetes"
+    config_file: "~/.kube/config"
+    cluster: "ood-prod"
+    context: "ood-prod"
+    bin: "/usr/bin/kubectl"
+    username_prefix: "prod-"
+    namespace_prefix: "user-"
+    all_namespaces: false
+    auto_supplemental_groups: false
+    server:
+      endpoint: "http://control-plane.fsae"
+      #cert_authority_file: "/etc/pki/tls/certs/kubernetes-ca.crt"
+      cert_authority_file: "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+    auth:
+      type: "oidc"
+    mounts: []
+  batch_connect:
+    ssh_allow: false

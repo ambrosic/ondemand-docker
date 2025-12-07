@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-exec /usr/sbin/init
+. /etc/apache2/envvars
+exec /usr/sbin/apache2 -D FOREGROUND -e debug

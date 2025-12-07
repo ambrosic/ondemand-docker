@@ -3,8 +3,8 @@ services:
   centos:
     container_name: ondemand-docker
     ports:
-      - 221:221
-      - 80:80
+      #- 221:221
+      - 8080:80
     networks:
       - ondemand-network
     build: ./docker

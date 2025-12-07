@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   git \
   iputils-ping \
   apt-transport-https \
+  wget \
   && rm -rf /var/lib/apt/lists/*
 RUN echo "installing ondemand"
 RUN wget -O /tmp/ondemand-release-web_4.0.0-noble_all.deb https://apt.osc.edu/ondemand/4.0/ondemand-release-web_4.0.0-noble_all.deb

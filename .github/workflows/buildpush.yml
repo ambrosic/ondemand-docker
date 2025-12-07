@@ -2,7 +2,7 @@ name: Build and publish OnDemand image
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main, master, UpdateSystem ]
     paths:
       - 'docker/**'
       - 'docker-compose.yml'
